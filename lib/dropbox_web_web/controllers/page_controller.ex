@@ -5,18 +5,18 @@ defmodule DropboxWebWeb.PageController do
 
   alias DropboxApi
 
-#  plug(:authenticate)
-# session plug
+  #  plug(:authenticate)
+  # session plug
 
   def index(conn, _params) do
     Plug.Conn.fetch_cookies(conn)
-    cookies = conn.cookies["bearer_token"]
-    IO.inspect(cookies, label: "inv page_controller.ex:11 (cookies)", pretty: true)
 
-    render(conn, "index.html")
+    conn
+    |> merge_assigns(bearer_token: conn.cookies["bearer_token"])
+    |> render("index.html")
   end
 
   def login(conn, _params) do
-    redirect(conn, external: "http://localhost:8001/login")
+    redirect(conn, external: DropboxApi.get_authorization_url())
   end
 end

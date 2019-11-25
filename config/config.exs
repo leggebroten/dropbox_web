@@ -14,6 +14,9 @@ config :dropbox_web, DropboxWebWeb.Endpoint,
   render_errors: [view: DropboxWebWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: DropboxWeb.PubSub, adapter: Phoenix.PubSub.PG2]
 
+config :dropbox_api,
+  url: System.get_env("DROPBOX_GRAPHQL_HOST") || "http://localhost:8001"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

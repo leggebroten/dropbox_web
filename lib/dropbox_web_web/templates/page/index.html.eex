@@ -4,8 +4,9 @@
 
 <section class="row">
   <article class="column">
-    <h2>Resources</h2>
+    <h2>App</h2>
     <ul>
+      <li><%= "Bearer token = #{bearer_token(@conn)}" %></li>
       <li><a href="/login">Click here to authorize app</a></li>
     </ul>
   </article>
